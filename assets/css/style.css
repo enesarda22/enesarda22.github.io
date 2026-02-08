@@ -68,7 +68,7 @@ section {
 
 .bio-card:hover::before,
 .bio-card:focus-within::before {
-  opacity: 0.5;
+  opacity: 0.25;
 }
 
 .bio-card:hover::after,
