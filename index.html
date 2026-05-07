@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Enes Arda</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
@@ -19,9 +23,9 @@
       <p class="contact">arda.2 [at] osu [dot] edu</p>
 
       <p class="links">
-        <a href="https://scholar.google.com/citations?hl=en&user=mqrcPFMAAAAJ"><span>Google Scholar</span></a>
-        <a href="https://github.com/enesarda22"><span>GitHub</span></a>
-<!--        <a href="#">CV</a>-->
+        <a href="https://scholar.google.com/citations?hl=en&user=mqrcPFMAAAAJ">Google Scholar</a>
+        <span class="sep">·</span>
+        <a href="https://github.com/enesarda22">GitHub</a>
       </p>
     </aside>
 
@@ -31,16 +35,16 @@
       <section>
         <h2>News</h2>
         <ul class="news">
+          <li><span class="date">Jun 2026</span> Presenting a poster at <a href="https://aiedge.osu.edu/aimaccs"><b>AIMACCS 2026</b></a> (June 1–2) — come say hi!</li>
           <li><span class="date">Jan 2026</span> <a href="https://arxiv.org/abs/2601.16514">New paper</a> accepted to <b>AISTATS 2026</b>! 🎉</li>
-<!--          <li><span class="date">Dec 2025</span> Started a new line of work on <b>Transformers + X</b>.</li>-->
         </ul>
       </section>
 
       <section class="bio-card" aria-labelledby="bio-heading">
         <h2 id="bio-heading">About</h2>
         <p>
-          I'm a PhD student advised by Prof. Atilla Eryilmaz. I completed my master’s degree under the
-          supervision of Prof. Aylin Yener. My research currently lies in <b>theoretical machine learning</b>
+          I'm a PhD student advised by <a href="https://ece.osu.edu/people/eryilmaz.2">Prof. Atilla Eryilmaz</a>. I completed my master's degree under the
+          supervision of <a href="https://ece.osu.edu/people/yener.5">Prof. Aylin Yener</a>. My research currently lies in <b>theoretical machine learning</b>
           and <b>optimization</b>.
         </p>
       </section>
@@ -50,66 +54,54 @@
 
         <ol class="pubs">
 
+          <li class="track">
+            <a href="#">
+              <strong>Architectural Optimization</strong>
+              <img class="track-thumb" src="assets/img/transport.png" alt="Architectural Optimization figure" />
+            </a>
+          </li>
+
           <li class="pub">
-            <span class="pub-title">Finite-Time Analysis of Gradient Descent for Shallow Transformers</span>.
-            <span class="pub-authors">E. Arda, S. Cayci, A. Eryilmaz</span>
-            <span class="pub-venue">AISTATS 2026.</span>
-            <a href="https://arxiv.org/abs/2601.16514">arXiv</a>
+            <span class="pub-title">Finite-Time Analysis of Gradient Descent for Shallow Transformers</span>
+            <span class="pub-meta">E. Arda, S. Cayci, A. Eryilmaz · AISTATS 2026 · <a href="https://arxiv.org/abs/2601.16514">arXiv</a> · <a href="https://openreview.net/forum?id=FmLMB2B0qH">OpenReview</a></span>
           </li>
 
           <li class="track">
-            <strong><a href="">Rate Distortion Perception</a></strong>
-<!--            <span class="track-note">-->
-<!--              policy optimization, average-reward MDPs, convergence-->
-<!--            </span>-->
+            <a href="#"><strong>Rate Distortion Perception</strong></a>
           </li>
 
           <li class="pub">
-            <span class="pub-title">Fundamental Limits for Text Summarization: A Rate-Distortion-Perception Approach</span>.
-            <span class="pub-authors">E. Arda, A. Yener</span>
-            <span class="pub-venue">(Journal Version In Review).</span>
+            <span class="pub-title">Fundamental Limits for Text Summarization: A Rate-Distortion-Perception Approach</span>
+            <span class="pub-meta">E. Arda, A. Yener · Journal Version In Review</span>
           </li>
 
           <li class="pub">
-            <span class="pub-title">Rate-Distortion-Perception Trade-off in Summarization</span>.
-            <span class="pub-authors">E. Arda, A. Yener</span>
-            <span class="pub-venue">Allerton 2025.</span>
-            <a href="https://hdl.handle.net/2142/130289">Illinois Library</a>
+            <span class="pub-title">Rate-Distortion-Perception Trade-off in Summarization</span>
+            <span class="pub-meta">E. Arda, A. Yener · Allerton 2025 · <a href="https://hdl.handle.net/2142/130289">Illinois Library</a></span>
           </li>
 
           <li class="pub">
-            <span class="pub-title">A Rate-Distortion Framework for Summarization</span>.
-            <span class="pub-authors">E. Arda, A. Yener</span>
-            <span class="pub-venue">ISIT 2025.</span>
-            <a href="https://arxiv.org/abs/2501.13100">arXiv</a>
-<!--            <a href="#">code</a>-->
+            <span class="pub-title">A Rate-Distortion Framework for Summarization</span>
+            <span class="pub-meta">E. Arda, A. Yener · ISIT 2025 · <a href="https://arxiv.org/abs/2501.13100">arXiv</a></span>
           </li>
 
           <li class="track">
-            <strong><a href="">Semantic Communication</a></strong>
-<!--            <span class="track-note">-->
-<!--              LLMs for relaying, semantic metrics, robustness-->
-<!--            </span>-->
+            <a href="#"><strong>Semantic Communication</strong></a>
           </li>
 
           <li class="pub">
-            <span class="pub-title">Semantic Relaying for Next Generation Networks: Harnessing Advances on Large Language Models</span>.
-            <span class="pub-authors">E. Arda, E. Kutay, A. Yener</span>
-            <span class="pub-venue">(Journal Version In Review).</span>
+            <span class="pub-title">Semantic Relaying for Next Generation Networks: Harnessing Advances on Large Language Models</span>
+            <span class="pub-meta">E. Arda, E. Kutay, A. Yener · Journal Version In Review</span>
           </li>
 
           <li class="pub">
-            <span class="pub-title">Semantic Relaying of Sentences</span>.
-            <span class="pub-authors">E. Arda, E. Kutay, A. Yener</span>
-            <span class="pub-venue">ICC 2025.</span>
-            <a href="https://ieeexplore.ieee.org/document/11161409">IEEE Xplore</a>
+            <span class="pub-title">Semantic Relaying of Sentences</span>
+            <span class="pub-meta">E. Arda, E. Kutay, A. Yener · ICC 2025 · <a href="https://ieeexplore.ieee.org/document/11161409">IEEE Xplore</a></span>
           </li>
 
           <li class="pub">
-            <span class="pub-title">Semantic Forwarding for Next Generation Relay Networks</span>.
-            <span class="pub-authors">E. Arda, E. Kutay, A. Yener</span>
-            <span class="pub-venue">CISS 2024.</span>
-            <a href="https://ieeexplore.ieee.org/document/10480169">IEEE Xplore</a>
+            <span class="pub-title">Semantic Forwarding for Next Generation Relay Networks</span>
+            <span class="pub-meta">E. Arda, E. Kutay, A. Yener · CISS 2024 · <a href="https://ieeexplore.ieee.org/document/10480169">IEEE Xplore</a></span>
           </li>
 
         </ol>
@@ -117,5 +109,6 @@
 
     </main>
   </div>
+
 </body>
 </html>
