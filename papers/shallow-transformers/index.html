@@ -159,10 +159,10 @@
               </li>
               <li>
                 <strong>Approximation error.</strong> Working near initialization, we use <em>transportation mappings</em>
-                to construct a linearized predictor for our target function \(f^\star\) inside an NTK-RKHS ball.
+                to construct a linearized predictor for our target function \(f^\star\) inside a Transformer-NTK RKHS ball of radius \(\bar\nu\).
                 Concentration over \(m\) heads, uniformly across \(n\) samples,
-                gives the \(\sqrt{\log(n)/m}\) dependence behind logarithmic width scaling.
-                The more complex the target function, measured by its RKHS norm, the larger the approximation error bound, so more heads are needed for the same accuracy.
+                gives the \(\bar\nu\sqrt{\log(n)/m}\) term, making logarithmic width sufficient for a fixed target class and accuracy.
+                The factor \(\bar\nu\) also captures the effect of target complexity: a larger RKHS norm means a more complex function to approximate, so our bound requires more heads for the same guarantee.
               </li>
               <li>
                 <strong>Linearization error.</strong> Projection keeps parameters near initialization,
