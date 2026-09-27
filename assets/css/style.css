@@ -16,7 +16,7 @@ body {
   margin: 0;
   font: 16px/1.65 var(--font-ui);
   color: #111;
-  background: #fafaf8;
+  background: var(--page-canvas);
 }
 
 a {
@@ -39,7 +39,7 @@ h2 {
   font-weight: 600;
 }
 
-section {
+.main > section {
   margin: 0 0 72px;
 }
 
@@ -72,9 +72,8 @@ section {
   inset: -40% -30%;
   background: radial-gradient(circle, color-mix(in srgb, var(--accent) 45%, transparent), transparent 70%);
   opacity: 0;
-  transform: translate(0, 0) scale(1);
   filter: blur(40px);
-  transition: opacity 320ms ease, transform 420ms ease;
+  transition: opacity 320ms ease;
   pointer-events: none;
 }
 
@@ -90,49 +89,28 @@ section {
 }
 
 .bio-card h2 {
-  margin-top: 0;
   font-size: 1.35rem;
 }
 
 .bio-card p {
   margin: 0 0 16px;
-  color: inherit;
-}
-
-.bio-card ul {
-  margin: 0;
-  padding-left: 20px;
-  color: inherit;
-}
-
-.bio-card li + li {
-  margin-top: 6px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .bio-card,
   .bio-card::before {
     transition-duration: 0ms !important;
-    animation: none !important;
   }
 }
 
-/* ---------- Layout ---------- */
-.home-site {
-  background: var(--page-canvas);
-}
-
+/* ---------- Homepage Layout ---------- */
 .wrap {
   max-width: var(--max);
-  margin: 48px auto 0;
+  margin: 48px auto 40px;
   padding: var(--pad);
   display: grid;
   gap: 32px;
   grid-template-columns: 280px 1fr;
-}
-
-.home-site .wrap {
-  margin-bottom: 40px;
 }
 
 .home-site .main {
@@ -203,7 +181,8 @@ section {
 }
 
 /* ---------- News ---------- */
-.news {
+.news,
+.pubs {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -221,13 +200,6 @@ section {
 }
 
 /* ---------- Publications ---------- */
-.pubs {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-}
-
 .pubs > li.pub {
   padding: 10px 0;
   font-family: var(--font-reading);
@@ -243,22 +215,9 @@ section {
   display: block;
   color: #999;
   font-size: 13px;
-  margin-top: 0px;
 }
 
-.pubs a {
-  color: #999;
-  font-size: inherit;
-}
-
-.pubs a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-/* ---------- Track headers ---------- */
-.track { margin: 0; }
-
+/* ---------- Research Tracks ---------- */
 .track-thumb {
   display: block;
   width: 100%;
@@ -270,10 +229,7 @@ section {
 }
 
 .track strong {
-  font-size: 16px;
   font-weight: 600;
-  color: #111;
-  font-family: var(--font-ui);
 }
 
 .track:not(:first-child) {

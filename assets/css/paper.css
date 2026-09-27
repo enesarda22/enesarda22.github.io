@@ -1,9 +1,5 @@
-/* Shared article treatment; the homepage keeps its own layout and typography. */
+/* Paper pages share the site's palette and use a dedicated reading layout. */
 body.paper-site {
-  --paper-canvas: var(--page-canvas);
-  --paper-surface: var(--page-surface);
-  --paper-radius: var(--panel-radius);
-  background: var(--paper-canvas);
   color: #292d29;
   font-family: var(--font-reading);
   font-size: 18px;
@@ -26,8 +22,8 @@ body.paper-site {
 
 .paper-article {
   padding-top: max(20px, var(--paper-inset));
-  background: var(--paper-surface);
-  border-radius: var(--paper-radius);
+  background: var(--page-surface);
+  border-radius: var(--panel-radius);
 }
 
 .paper-body {
@@ -42,11 +38,11 @@ body.paper-site {
 .paper-venue,
 .paper-resources {
   font-family: var(--font-ui);
+  font-size: 14px;
   line-height: 1.6;
 }
 
 .paper-back {
-  font-size: 14px;
   color: #666;
 }
 
@@ -71,12 +67,10 @@ body.paper-site {
 .paper-venue {
   margin: 0 0 12px;
   color: var(--accent);
-  font-size: 14px;
 }
 
 .paper-header h1 {
   margin: 0 0 18px;
-  font-family: inherit;
   font-size: 38px;
   font-weight: 500;
   line-height: 1.16;
@@ -86,7 +80,6 @@ body.paper-site {
 
 .paper-authors {
   margin: 0;
-  font-family: inherit;
   font-size: 19px;
 }
 
@@ -97,7 +90,6 @@ body.paper-site {
   list-style: none;
   padding: 0;
   margin: 16px 0 0;
-  font-size: 14px;
   color: #555;
 }
 
@@ -108,11 +100,11 @@ body.paper-site {
 }
 
 .paper-page section {
-  margin-bottom: 36px;
+  margin: 0 0 36px;
 }
 
-.paper-page h2 {
-  margin-bottom: 14px;
+.paper-section-title {
+  margin: 0 0 14px;
   padding-left: 12px;
   border-left: 3px solid var(--accent);
   font-size: 22px;
@@ -120,10 +112,8 @@ body.paper-site {
   line-height: 1.3;
 }
 
-.paper-page .paper-question {
+.paper-question {
   margin: 12px 0 24px;
-  padding: 0;
-  border: 0;
   font-size: 1em;
   font-style: italic;
   font-weight: 400;
@@ -131,15 +121,8 @@ body.paper-site {
   text-align: center;
 }
 
-.paper-page p {
+.paper-body p {
   margin-top: 0;
-}
-
-.paper-page section p,
-.paper-findings {
-  font-size: 1em;
-  line-height: 1.6;
-  color: inherit;
 }
 
 .paper-findings {
@@ -152,37 +135,23 @@ body.paper-site {
 }
 
 .paper-figure {
-  margin: 26px 0 22px;
+  --figure-width: 560px;
 }
 
 .paper-figure img {
   display: block;
   width: 100%;
-  max-width: 560px;
+  max-width: var(--figure-width);
   height: auto;
   margin: 0 auto;
-}
-
-.paper-figure figcaption {
-  margin: 12px auto 0;
-  max-width: 560px;
-  color: #666;
-  font-size: 13px;
-  line-height: 1.6;
 }
 
 .paper-architecture {
   margin: 28px 0 40px;
 }
 
-.paper-architecture img {
-  max-width: 560px;
-}
-
 .paper-equation {
   margin: 16px 0;
-  padding: 0;
-  font-size: 1em;
 }
 
 .paper-equation mjx-container[display="true"] {
@@ -201,10 +170,8 @@ body.paper-site {
   background: color-mix(in srgb, var(--accent-bg) 25%, var(--page-surface));
 }
 
-.paper-page .paper-theorem-title {
+.paper-theorem-title {
   margin: 0 0 14px;
-  padding: 0;
-  border: 0;
   color: var(--accent);
   font-size: 1em;
   font-weight: 500;
@@ -216,7 +183,6 @@ body.paper-site {
 }
 
 .paper-technical-layout {
-  --decomposition-width: 340px;
   display: flow-root;
   margin-bottom: 20px;
 }
@@ -235,24 +201,11 @@ body.paper-site {
 }
 
 .paper-decomposition {
+  --figure-width: 340px;
   float: right;
-  width: var(--decomposition-width);
+  width: var(--figure-width);
   max-width: 46%;
   margin: 0 0 16px 28px;
-}
-
-.paper-decomposition img {
-  max-width: var(--decomposition-width);
-}
-
-.paper-page .paper-scope {
-  color: #555;
-  font-size: 14px;
-}
-
-.paper-reference {
-  border-top: 1px solid #e8e8e8;
-  padding-top: 28px;
 }
 
 .citation-block {
@@ -309,7 +262,7 @@ body.paper-site {
   cursor: wait;
 }
 
-.paper-page .citation-status {
+.citation-block .citation-status {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -320,7 +273,7 @@ body.paper-site {
   font: 13px/1.5 var(--font-ui);
 }
 
-.paper-page .citation-status.is-error {
+.citation-block .citation-status.is-error {
   position: static;
   width: auto;
   height: auto;
@@ -330,7 +283,7 @@ body.paper-site {
   margin-top: 12px;
 }
 
-.paper-page pre {
+.citation-block pre {
   margin: 0;
   padding: 0;
   white-space: pre-wrap;
@@ -349,7 +302,7 @@ body.paper-site {
   .paper-decomposition {
     float: none;
     width: 100%;
-    max-width: var(--decomposition-width);
+    max-width: var(--figure-width);
     margin: 0 auto 20px;
   }
 }
@@ -366,5 +319,5 @@ body.paper-site {
   .paper-body { padding-block: 18px 40px; }
   .paper-header h1 { font-size: 30px; }
   .paper-authors { font-size: 18px; }
-  .paper-page h2 { font-size: 20px; }
+  .paper-section-title { font-size: 20px; }
 }

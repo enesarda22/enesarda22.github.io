@@ -1,4 +1,4 @@
-// Shared math typography for paper pages and the design specimen.
+// Static, accessible STIX math typography for paper pages.
 window.MathJax = {
   loader: {
     load: ['a11y/assistive-mml']
