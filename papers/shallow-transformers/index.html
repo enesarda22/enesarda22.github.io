@@ -149,8 +149,12 @@
             </figure>
             <ul class="paper-findings">
               <li>
-                <strong>Optimization error.</strong> Softmax is key to sequence-length independence in our setting.
-                Its Jacobian has a covariance structure that enables <em>\(T\)-independent</em> Lipschitz and smoothness constants.
+                <strong>Optimization error.</strong> Softmax is key to sequence-length independence.
+                Its Jacobian has a covariance structure that gives, for token norms at most one,
+                <div class="paper-equation">
+                  \[\left\|X J_{\sigma_s} X^\top\right\|_{\mathrm{op}} \le 1\]
+                </div>
+                <em>uniformly in \(T\)</em>, which enables \(T\)-independent Lipschitz and smoothness constants.
                 A Lyapunov argument for projected gradient descent then turns these into a \(T\)-independent optimization bound.
               </li>
               <li>
