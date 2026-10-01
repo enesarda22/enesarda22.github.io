@@ -2,3 +2,7 @@
 .DS_Store
 .venv/
 CLAUDE.md
+
+# Publish only the public CV PDF; keep source, private data and build files local.
+cv/*
+!cv/Enes_Arda_CV.pdf
