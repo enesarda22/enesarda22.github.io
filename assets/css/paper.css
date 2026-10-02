@@ -150,17 +150,24 @@ body.paper-site {
   margin: 28px 0 40px;
 }
 
+.paper-experiment {
+  --figure-width: 600px;
+  margin: 24px 0;
+}
+
+.paper-figure figcaption {
+  max-width: var(--figure-width);
+  margin: 14px auto 0;
+  font: 14px/1.6 var(--font-ui);
+  color: #555;
+}
+
 .paper-equation {
   margin: 16px 0;
 }
 
 .paper-equation mjx-container[display="true"] {
   margin: 0;
-}
-
-/* Invisible alignment spacers must not widen the page on small screens. */
-.paper-equation mjx-block:has(> mjx-mphantom) {
-  overflow: clip;
 }
 
 .paper-theorem {

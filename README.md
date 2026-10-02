@@ -1,6 +1,6 @@
 # Enes Arda’s website
 
-A static academic homepage and paper blog, published through GitHub Pages. There is no build step.
+A static academic homepage and paper blog at https://enesarda.com/, published through GitHub Pages. There is no build step.
 
 ## Preview
 
@@ -25,11 +25,11 @@ Each paper has its own directory under `papers/`, containing the page, its publi
 
 The small scripts each serve one purpose:
 
-- `math-config.js`: consistent math rendering and screen-reader MathML, without interactive math controls;
+- `math-config.js`: SVG math rendering, responsive display line breaks, and screen-reader MathML, without interactive math controls;
 - `math-copy.js`: readable TeX when copying equations along with prose;
 - `citation-copy.js`: the citation copy button and its feedback.
 
-The theorem’s TeX helper gives underbraces and their labels matching vertical dimensions. Its invisible spacers are clipped in CSS so they cannot create horizontal scrolling.
+The theorem’s TeX helper gives underbraces and their labels matching vertical dimensions.
 
 ## Maintenance
 
