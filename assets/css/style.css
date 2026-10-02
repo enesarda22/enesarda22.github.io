@@ -235,6 +235,24 @@ h2 {
   border-radius: inherit;
 }
 
+.track + .pub .track-thumb {
+  margin-top: 0;
+}
+
+.track-thumb-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 520px;
+}
+
+@media (max-width: 600px) {
+  .track-thumb-pair {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+}
+
 .track strong {
   font-weight: 600;
 }
