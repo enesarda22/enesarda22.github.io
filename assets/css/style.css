@@ -248,8 +248,7 @@ h2 {
 
 @media (max-width: 600px) {
   .track-thumb-pair {
-    grid-template-columns: 1fr;
-    max-width: 340px;
+    gap: 12px;
   }
 }
 
