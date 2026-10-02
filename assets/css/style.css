@@ -248,7 +248,14 @@ h2 {
 
 @media (max-width: 600px) {
   .track-thumb-pair {
-    gap: 12px;
+    display: block;
+    /* Match the decomposition thumbnail's height using the figures' aspect ratios. */
+    width: 83%;
+    max-width: 282px;
+  }
+
+  .track-thumb-pair > img + img {
+    display: none;
   }
 }
 
