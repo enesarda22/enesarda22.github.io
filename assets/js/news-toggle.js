@@ -12,7 +12,7 @@
     toggle.hidden = !mobile.matches;
     toggle.setAttribute('aria-expanded', String(!collapsed));
     toggle.querySelector('.news-toggle-label').textContent = collapsed ? 'More' : 'Less';
-    toggle.querySelector('.news-toggle-marker').textContent = collapsed ? '▸' : '▾';
+    toggle.querySelector('.news-toggle-marker').textContent = collapsed ? '▸' : '▴';
   }
 
   toggle.addEventListener('click', () => {
