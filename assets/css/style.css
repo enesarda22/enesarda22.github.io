@@ -232,23 +232,22 @@ h2 {
   border-bottom: 1px solid #eee;
 }
 
-.news-more > summary {
-  width: fit-content;
+.news-toggle {
+  display: block;
   padding: 8px 0;
+  border: 0;
+  background: none;
+  font: inherit;
   color: #555;
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  .home-site .main > section:first-child > .news > li:last-child {
-    border-bottom: 0;
-  }
-}
+.news-toggle[hidden] { display: none; }
 
-@supports selector(::details-content) {
-  @media (min-width: 601px) {
-    .news-more > summary { display: none; }
-    .news-more::details-content { content-visibility: visible; }
+@media (max-width: 600px) {
+  .news li:last-child,
+  .news-collapsed li:nth-child(2) {
+    border-bottom: 0;
   }
 }
 

@@ -25,6 +25,7 @@ Each paper has its own directory under `papers/`, containing the page, its publi
 
 The small scripts each serve one purpose:
 
+- `news-toggle.js`: the homepage's mobile More/Less control; all news stays visible without JavaScript;
 - `math-config.js`: SVG math rendering, responsive display line breaks, and screen-reader MathML, without interactive math controls;
 - `math-copy.js`: readable TeX when copying equations along with prose;
 - `citation-copy.js`: the citation copy button and its feedback.
