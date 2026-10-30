@@ -44,7 +44,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=STIX+Two+Text:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=25" />
+  <link rel="stylesheet" href="assets/css/style.css?v=26" />
 </head>
 
 <body class="home-site">
@@ -52,19 +52,23 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <img class="avatar" src="assets/img/enes.jpeg" alt="Photo of Enes Arda" />
-      <h1>Enes Arda</h1>
-      <p class="meta">PhD Student · <span class="muted">The Ohio State University</span></p>
+      <div class="profile-header">
+        <img class="avatar" src="assets/img/enes.jpeg" alt="Photo of Enes Arda" />
+        <div class="profile-identity">
+          <h1>Enes Arda</h1>
+          <p class="meta">PhD Student · <span class="affiliation-full">The Ohio State University</span><abbr class="affiliation-short" title="The Ohio State University">OSU</abbr></p>
 
-      <p class="contact">arda.2 [at] osu [dot] edu</p>
+          <p class="contact">arda.2 [at] osu [dot] edu</p>
 
-      <p class="links">
-        <a href="cv/Enes_Arda_CV.pdf">CV</a>
-        <span class="sep">·</span>
-        <a href="https://scholar.google.com/citations?hl=en&user=mqrcPFMAAAAJ">Google Scholar</a>
-        <span class="sep">·</span>
-        <a href="https://github.com/enesarda22">GitHub</a>
-      </p>
+          <p class="links">
+            <a href="cv/Enes_Arda_CV.pdf">CV</a>
+            <span class="sep">·</span>
+            <a href="https://scholar.google.com/citations?hl=en&user=mqrcPFMAAAAJ">Google Scholar</a>
+            <span class="sep">·</span>
+            <a href="https://github.com/enesarda22">GitHub</a>
+          </p>
+        </div>
+      </div>
 
       <nav class="sidebar-posts" aria-labelledby="blog-posts-heading">
         <h2 id="blog-posts-heading">Blog posts</h2>
@@ -79,12 +83,20 @@
 
       <section>
         <h2>News</h2>
+        <!-- Keep news to one short sentence.
+             Aim for 1 line on desktop and 2 on mobile.
+             Allow natural wrapping; keep the same wording across devices. -->
         <ul class="news">
-          <li><span class="date">Sep 2026</span> New preprint: <a href="https://arxiv.org/abs/2609.32341">Attention versus State-Space Models for In-Context Learning</a>.</li>
+          <li><span class="date">Sep 2026</span> New preprint: <a href="https://arxiv.org/abs/2609.32341">Attention vs. state-space models</a>.</li>
           <li><span class="date">Sep 2026</span> Two new papers accepted: <a href="https://arxiv.org/abs/2610.04117"><b>NeurIPS 2026</b></a> and <a href="https://ieeexplore.ieee.org/document/11727026"><b>IEEE JSTSP</b></a>!</li>
-          <li><span class="date">May 2026</span> Presenting a poster at <a href="https://aiedge.osu.edu/aimaccs"><b>AIMACCS 2026</b></a> (June 1–2) — come say hi!</li>
-          <li><span class="date">Jan 2026</span> <a href="https://arxiv.org/abs/2601.16514">New paper</a> accepted to <b>AISTATS 2026</b>!</li>
         </ul>
+        <details class="news-more">
+          <summary>More</summary>
+          <ul class="news">
+            <li><span class="date">May 2026</span> Presenting at <a href="https://aiedge.osu.edu/aimaccs"><b>AIMACCS 2026</b></a> (June 1–2), come say hi!</li>
+            <li><span class="date">Jan 2026</span> <a href="https://arxiv.org/abs/2601.16514">New paper</a> accepted to <b>AISTATS 2026</b>!</li>
+          </ul>
+        </details>
       </section>
 
       <section class="bio-card" aria-labelledby="bio-heading">
