@@ -124,6 +124,10 @@ h2 {
   margin-bottom: 52px;
 }
 
+.home-site .bio-card {
+  margin-bottom: 60px;
+}
+
 .home-site .main > section:last-child {
   margin-bottom: 0;
 }
@@ -159,7 +163,10 @@ h2 {
   }
   .home-site .main { padding: 24px 20px; }
   .home-site .main > section:first-child { margin-bottom: 24px; }
-  .home-site .bio-card { padding: 22px 20px; }
+  .home-site .bio-card {
+    margin-bottom: 48px;
+    padding: 22px 20px;
+  }
 
   .home-site .profile-header {
     display: flex;
