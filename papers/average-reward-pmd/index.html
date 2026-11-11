@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward MDPs</title>
+  <meta name="description" content="How fast, and with how few samples, policy mirror descent minimizes the average-reward objective. An overview of our NeurIPS 2026 paper." />
+  <meta name="author" content="Enes Arda, Atilla Eryilmaz" />
+  <link rel="canonical" href="https://enesarda.com/papers/average-reward-pmd/" />
+
+  <meta name="citation_title" content="Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward MDPs" />
+  <meta name="citation_author" content="Enes Arda" />
+  <meta name="citation_author" content="Atilla Eryilmaz" />
+  <meta name="citation_publication_date" content="2026" />
+  <meta name="citation_conference_title" content="Conference on Neural Information Processing Systems (NeurIPS)" />
+  <meta name="citation_pdf_url" content="https://enesarda.com/papers/average-reward-pmd/paper.pdf" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward MDPs" />
+  <meta property="og:description" content="How fast, and with how few samples, policy mirror descent minimizes the average-reward objective. An overview of our NeurIPS 2026 paper." />
+  <meta property="og:url" content="https://enesarda.com/papers/average-reward-pmd/" />
+  <meta property="og:image" content="https://enesarda.com/assets/img/neurips-rate-gap.png" />
+  <meta property="og:image:alt" content="Policy mirror descent: the median trajectory-dependent mismatch relative to the worst-case bound decreases across four average-reward MDPs." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward MDPs" />
+  <meta name="twitter:description" content="How fast, and with how few samples, policy mirror descent minimizes the average-reward objective. An overview of our NeurIPS 2026 paper." />
+  <meta name="twitter:image" content="https://enesarda.com/assets/img/neurips-rate-gap.png" />
+  <meta name="twitter:image:alt" content="Policy mirror descent: the median trajectory-dependent mismatch relative to the worst-case bound decreases across four average-reward MDPs." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward MDPs",
+    "name": "Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward MDPs",
+    "author": [
+      {"@type": "Person", "name": "Enes Arda", "url": "https://enesarda.com/"},
+      {"@type": "Person", "name": "Atilla Eryilmaz"}
+    ],
+    "url": "https://enesarda.com/papers/average-reward-pmd/",
+    "sameAs": "https://arxiv.org/abs/2610.04117",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://enesarda.com/papers/average-reward-pmd/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=29" />
+  <link rel="stylesheet" href="../../assets/css/paper.css?v=41" />
+  <script defer src="../../assets/js/math-config.js?v=5"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-svg-nofont.js"></script>
+  <script defer src="../../assets/js/math-copy.js"></script>
+  <script defer src="../../assets/js/citation-copy.js?v=3"></script>
+  <style>
+    /* Comparison table (this page only). */
+    .paper-table { --figure-width: 640px; margin: 24px 0; }
+    .paper-table-scroll { max-width: var(--figure-width); margin: 0 auto; overflow-x: auto; }
+    .paper-table table { width: 100%; border-collapse: collapse; font-size: 0.94em; line-height: 1.4; }
+    .paper-table th, .paper-table td { padding: 9px 10px; text-align: center; vertical-align: middle; white-space: nowrap; }
+    .paper-table th:first-child, .paper-table td:first-child { text-align: left; padding-left: 2px; white-space: normal; }
+    .paper-table thead th { font-weight: 600; border-top: 1.5px solid #292d29; border-bottom: 1px solid #292d29; }
+    .paper-table thead small { display: block; font: 400 13px/1.4 var(--font-ui); color: #555; }
+    .paper-table tbody tr:last-child td { border-top: 1px solid #c9c6bf; border-bottom: 1.5px solid #292d29; }
+    .paper-table .ours td:first-child, .paper-table tbody tr:last-child td:first-child { font-weight: 600; color: var(--accent); }
+    @media (max-width: 520px) {
+      .paper-table table { font-size: 0.78em; }
+      .paper-table th, .paper-table td { padding: 8px 4px; }
+      .paper-table thead small { font-size: 11px; }
+    }
+  </style>
+</head>
+<body class="paper-site">
+  <main class="paper-page">
+    <article class="paper-article" aria-labelledby="paper-title">
+      <nav class="paper-nav" aria-label="Back to homepage">
+        <a class="paper-back" href="../../">← Enes Arda</a>
+      </nav>
+
+      <header class="paper-header">
+        <p class="paper-venue">NeurIPS 2026</p>
+        <h1 id="paper-title">Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward MDPs</h1>
+        <p class="paper-authors">Enes Arda, Atilla Eryilmaz</p>
+        <ul class="paper-resources" aria-label="Paper resources">
+          <li><a href="https://arxiv.org/abs/2610.04117">arXiv</a></li>
+          <li><a href="https://neurips.cc/virtual/2026/poster/151053">NeurIPS</a></li>
+          <!-- Hidden until the forum is public: <li><a href="https://openreview.net/forum?id=dLWVvbCLnT">OpenReview</a></li> -->
+          <li><a href="paper.pdf">Paper PDF</a></li>
+          <li><a href="poster.pdf">Poster PDF</a></li>
+          <li><a href="https://github.com/enesarda22/avg-reward-pmd-experiments">Code</a></li>
+          <li><a href="#citation">BibTeX</a></li>
+        </ul>
+      </header>
+
+      <div class="paper-body">
+        <section aria-label="Discounted and average-reward objectives">
+          <p>The most familiar objective in reinforcement learning (RL) is the discounted cost</p>
+          <div class="paper-equation">
+            \[\rho_\gamma=\lim_{H\to\infty}\sum_{k=0}^{H-1}\gamma^k\,c_k, \tag{1}\]
+          </div>
+          <p>
+            where \(c_k\) is the cost that a policy incurs at time \(k\),
+            and the discount factor \({\gamma\in(0,1)}\) puts more weight on early costs.
+          </p>
+          <p>
+            But many applications, such as job scheduling and communication networks,
+            are more naturally modeled by the average-reward objective,
+            which weights all times <em>equally</em>:
+          </p>
+          <div class="paper-equation">
+            \[\rho=\lim_{H\to\infty}\frac{1}{H}\sum_{k=0}^{H-1}c_k. \tag{2}\]
+          </div>
+        </section>
+
+        <section aria-label="Policy mirror descent and what the discounted theory relies on">
+          <p>
+            Policy mirror descent (PMD) is no exception: it has a mature finite-time theory
+            for the discounted cost, but less is known for the average-reward objective.
+            Our paper develops a finite-time, finite-sample theory of PMD for this objective.
+          </p>
+          <p>
+            The theory for (1) uses its weights \(\gamma^k\) in two ways
+            that the equal weights in (2) do not allow:
+          </p>
+          <ul class="paper-findings">
+            <li>
+              <strong>Initial conditions.</strong> More weight on early costs means that the initial state distribution matters,
+              and the theory uses it to lower bound state visitation uniformly.
+              With equal weights, (2) forgets the initial distribution: only the stationary behavior of the policy matters.
+            </li>
+            <li>
+              <strong>Effective horizon.</strong> The weights \(\gamma^k\) yield a finite effective horizon
+              \({H_\gamma:=1/(1-\gamma)}\) and unbiased value estimates via geometric stopping times.
+              With equal weights, there is no such horizon, and truncating the sum in (2) introduces a bias.
+            </li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="question">
+          <p>
+            To minimize the average-reward objective \(\rho\), PMD updates the current policy \(\pi^t\)
+            at every state \(s\). The update uses a step size \(\eta_t\), a critic \(\tilde Q^t\)
+            and a Bregman divergence \(D\):
+          </p>
+          <div class="paper-equation">
+            \[\pi^{t+1}_s\in\operatorname*{arg\,min}_{p\in\mathcal{P}(\mathcal{A})}
+            \Bigl\{\eta_t\,\langle\tilde Q^t_s,\,p\rangle+D\bigl(p,\pi^t_s\bigr)\Bigr\}. \tag{3}\]
+          </div>
+          <p>
+            The first term favors the actions that the critic estimates to be cheap,
+            the second keeps the new policy \(\pi^{t+1}_s\) close to the current one,
+            and the step size \(\eta_t\) sets the balance between the two.
+          </p>
+          <p>
+            The critic \(\tilde Q^t\) is an estimate of the differential action-value function \(Q^{\pi^t}\),
+            which measures how costly each action is under the current policy.
+            We study three critics:
+          </p>
+          <ul class="paper-findings">
+            <li>
+              <strong>Exact.</strong> \({\tilde Q^t(s,a)=Q^{\pi^t}(s,a)}\) for every state \(s\) and action \(a\), with no error.
+            </li>
+            <li>
+              <strong>Tabular.</strong> \({\tilde Q^t(s,a)=\hat Q^t(s,a)}\), a separate estimate of each \(Q^{\pi^t}(s,a)\).
+            </li>
+            <li>
+              <strong>Linear function approximation (LFA).</strong> \({\tilde Q^t(s,a)=\phi_{s,a}^\top w_t}\),
+              a linear function of given features \(\phi_{s,a}\).
+            </li>
+          </ul>
+          <p>For the PMD update (3) and these critics, we ask:</p>
+          <h2 id="question" class="paper-question">How fast, and with how few samples,<br />can policy mirror descent provably minimize the average-reward objective?</h2>
+          <p>
+            We measure “how fast” by the decay of the gap
+            \({\Delta_t:=\rho(\pi^t)-\rho^*}\) between the objective of the current policy \(\pi^t\)
+            and its minimum \(\rho^*\) over all policies.
+            A single master recursion bounds this gap at every iteration, for any critic:
+          </p>
+        </section>
+
+        <section class="paper-theorem" aria-labelledby="main-result">
+          <h2 id="main-result" class="paper-theorem-title">Lemma 3.7 (informal)</h2>
+          <p>
+            In an ergodic Markov decision process (MDP), let \(\chi_t\) be the mismatch
+            between the stationary distributions of an optimal policy and of \(\pi^t\),
+            with \({\sup_t\chi_t\le\bar\chi}\) for some \({\bar\chi>1}\),
+            and let \(\bar A\) and \(\bar B\) bound the critic’s error.
+            If the step sizes grow as \({\eta_t\ge\frac{\bar\chi}{\bar\chi-1}\,\eta_{t-1}}\),
+            then for every iteration&nbsp;\(t\),
+          </p>
+          <div class="paper-equation">
+            <!-- The phantom gives the three braces the same depth, so the labels share a baseline. -->
+            \[
+            \newcommand{\masterterm}[2]{
+              \underbrace{#1\vphantom{\Bigl(1-\frac{1}{\bar\chi}\Bigr)^{t}}}_{\text{#2}}
+            }
+            \Bigl(\Delta_t-\masterterm{(\bar\chi\bar A+\bar B)}{error floor}\Bigr)_+
+            \;\le\;
+            \masterterm{\Bigl(1-\frac{1}{\bar\chi}\Bigr)^{t}}{linear rate}
+            \hspace{14pt}\cdot
+            \masterterm{\Psi_0\rlap{,}}{initialization}
+            \]
+          </div>
+          <p>
+            where \({(x)_+:=\max\{x,0\}}\).
+            If the step sizes grow faster, with \({\eta_t/\eta_{t-1}\to\infty}\), then for every \({\zeta>0}\),
+          </p>
+          <div class="paper-equation">
+            \[
+            \limsup_{t\to\infty}\,
+            \Bigl(\Delta_t-\masterterm{\bigl((\chi+\zeta)\bar A+\bar B\bigr)}{error floor}\Bigr)_+^{1/t}
+            \;\le\;
+            \masterterm{1-\frac{1}{\chi+\zeta}\rlap{,}}{asymptotic rate}
+            \]
+          </div>
+          <p>
+            with the tail mismatch \({\chi:=\limsup_t\chi_t\le\bar\chi}\).
+          </p>
+        </section>
+
+        <section aria-label="Interpreting the result">
+          <p>The lemma gives three takeaways:</p>
+          <ul class="paper-interpretation-text">
+            <li>
+              <strong>Actor and critic separate.</strong> The actor’s machinery (step-size schedule, mismatch) sets the rate;
+              the critic’s error (\(\bar A\), \(\bar B\)) affects only the error floor.
+            </li>
+            <li>
+              <strong>No tuning.</strong> Doubling the step size every iteration works without knowing \(\bar\chi\),
+              and larger step sizes do not amplify the critic’s error.
+            </li>
+            <li>
+              <strong>\({\chi\ll\bar\chi}\) in practice.</strong> The worst case \(\bar\chi\) governs only a short warm-up:
+              across four MDPs, the median \({\chi_t/\bar\chi}\) drops by 10–1000× within about 20–40 iterations
+              (see the figure below).
+            </li>
+          </ul>
+          <figure class="paper-figure paper-experiment" style="--figure-width: 420px">
+            <img src="../../assets/img/neurips-rate-gap.png?v=3" width="1080" height="471" loading="lazy"
+                 alt="Median of χ_t/χ̄ against the iteration t, on a logarithmic axis, for four MDPs, with interquartile ranges shaded: a random MDP with 20 states and 4 actions, queue admission, a 5×5 gridworld and Jack’s car rental. All four curves fall from near 1 to between about 0.1 and 0.003 within the first 20 to 40 iterations and stay there." />
+            <figcaption>
+              Median \({\chi_t/\bar\chi}\) trajectories. Interquartile range shaded.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section aria-labelledby="exact-critic">
+          <h2 id="exact-critic" class="paper-section-title">Exact critic</h2>
+          <p>
+            With the exact critic, \({\bar A=\bar B=0}\): the error floor is zero, \({\Delta_t\to0}\),
+            and the asymptotic rate is \({1-1/\chi}\). Two more results hold in this case:
+          </p>
+          <ul class="paper-findings">
+            <li>
+              <strong>Superlinear.</strong> When \(\pi^t\) converges (e.g., if the optimal policy is unique),
+              \({\chi=1}\) and \({\limsup_t\Delta_t^{1/t}=0}\).
+              With KL or the squared Euclidean distance as \(D\), this assumption is not needed.
+            </li>
+            <li>
+              <strong>Tight.</strong> For every \(\bar\chi\) and every \(T\), some MDP has
+              \({\Delta_t\ge\tfrac12(1-1/\bar\chi)^t\Delta_0}\) for all \({t\le T}\),
+              for any Bregman divergence and any step sizes.
+            </li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="critics">
+          <h2 id="critics" class="paper-section-title">Sample-optimal critics</h2>
+          <p>
+            Lemma 3.7 answers “how fast”. For “how few samples”, it also says what it takes
+            to guarantee \({\Delta_T\le\varepsilon}\):
+          </p>
+          <ul class="paper-findings">
+            <li>
+              <strong>Actor.</strong> It must run for \({T=\tilde O(\bar\chi)}\) iterations, with one critic call each.
+            </li>
+            <li>
+              <strong>Critic.</strong> Its error bounds must satisfy \({\bar A,\bar B=O(\varepsilon/\bar\chi)}\),
+              so that the error floor \({\bar\chi\bar A+\bar B}\) stays below \(\varepsilon\).
+            </li>
+          </ul>
+          <p>
+            The sample count is then the number of iterations times the cost of a single critic call.
+            In one call, the critic tries to estimate
+          </p>
+          <div class="paper-equation">
+            \[Q^{\pi^t}(s,a)=\lim_{H\to\infty}\mathbb{E}\Bigl[\,\sum_{k=0}^{H-1}\bigl(c_k-\rho(\pi^t)\bigr)
+            \;\Big|\;s_0=s,\;a_0=a\Bigr].\]
+          </div>
+          <p>
+            The terms of this sum vanish only once the costs \(c_k\) are sampled
+            from the stationary distribution of \(\pi^t\).
+            So how fast a rollout of \(\pi^t\) gets close to stationarity tells us when to stop sampling,
+            and this is where the mixing time \(t_{\mathrm{mix}}\) comes in.
+            Both critics below use it to decide how to spend their samples, and both do so <em>optimally</em>:
+            each matches a lower bound that we prove, up to logarithmic factors.
+          </p>
+          <p>
+            <strong>Tabular critic.</strong> We start from the Poisson equation:
+          </p>
+          <div class="paper-equation">
+            <!-- Two-line labels under the two terms; the phantom keeps both braces at the same depth. -->
+            \[
+            \newcommand{\critterm}[3]{
+              \underset{\substack{\strut\text{#2}\\\strut\text{#3}}}{
+                \underbrace{#1\vphantom{\sum_{s'}}}
+              }
+            }
+            Q^{\pi^t}(s,a)=c(s,a)-\rho(\pi^t)
+            +\critterm{\sum_{s'}P(s'\mid s,a)}{one-step samples}{for every $(s,a)$}
+            \cdot\critterm{h^{\pi^t}(s')\rlap{.}}{rollouts}{once per state}
+            \]
+          </div>
+          <p>
+            The key idea is to spend the expensive samples on the part
+            that every state–action pair \((s,a)\) shares.
+            That part is the differential value function \(h^{\pi^t}\): it depends on the state alone,
+            so the critic estimates it once per state and every pair reuses it.
+            A rollout is \(t_{\mathrm{mix}}\) steps long and a one-step sample is one,
+            so for a fixed accuracy the critic pays of order \(t_{\mathrm{mix}}^3\) samples per state
+            and only \(t_{\mathrm{mix}}^2\) per pair.
+          </p>
+          <p>
+            <strong>LFA critic.</strong> We fit \(w_t\) with \(K\) steps of stochastic gradient descent (SGD),
+            and average the last half of the iterates:
+          </p>
+          <div class="paper-equation">
+            <!-- \mathclap keeps the two-line label from spreading the formula apart. -->
+            \[
+            \require{mathtools}
+            \newcommand{\critclap}[3]{
+              \underset{\mathclap{\substack{\strut\text{#2}\\\strut\text{#3}}}}{
+                \underbrace{#1\vphantom{\bigl(}}
+              }
+            }
+            \begin{aligned}
+            w_{t,k}&=w_{t,k-1}-\alpha\bigl(\phi_{s_k,a_k}^\top w_{t,k-1}
+            -\critclap{\hat Q^t(s_k,a_k)}{noisy label from}{one rollout}\bigr)\,\phi_{s_k,a_k},\\[4pt]
+            w_t&=\critterm{\frac{1}{\lceil K/2\rceil}\sum_{k>K/2}w_{t,k}\rlap{.}}{averaging}{inside the critic}
+            \end{aligned}
+            \]
+          </div>
+          <p>
+            Here, the key idea is to average the noise out over single labels \(\hat Q^t(s_k,a_k)\),
+            which are cheap: each costs one rollout, again of length \(t_{\mathrm{mix}}\).
+            A sublinear actor averages over whole critic estimates instead, one per iteration,
+            each of order \(t_{\mathrm{mix}}^3\) samples.
+            For a fixed accuracy, both average of order \(t_{\mathrm{mix}}^2\) of them.
+            Our LFA critic does so per feature, where the tabular critic did per pair:
+            with \(d\) features, a call takes \({d\,t_{\mathrm{mix}}^2}\) labels,
+            or \({d\,t_{\mathrm{mix}}^3}\) samples in total.
+          </p>
+          <p>
+            Combining these critics with the actor gives the number of samples needed
+            to reach \({\Delta_T\le\varepsilon}\), in units of \(1/\varepsilon^2\):
+          </p>
+          <figure class="paper-figure paper-table">
+            <div class="paper-table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Tabular<small>generative model</small></th>
+                    <th scope="col">LFA<small>single trajectory</small></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Prior best policy gradient</td>
+                    <td>\({|\mathcal S||\mathcal A|\,t_{\mathrm{mix}}^3}\)</td>
+                    <td>\({|\mathcal S||\mathcal A|\,t_{\mathrm{mix}}^5}\)</td>
+                  </tr>
+                  <tr class="ours">
+                    <td>Ours</td>
+                    <td>\({\bigl(|\mathcal S|\,t_{\mathrm{mix}}^3+|\mathcal S||\mathcal A|\,t_{\mathrm{mix}}^2\bigr)\,\bar\chi^3}\)</td>
+                    <td>\({d\,t_{\mathrm{mix}}^3\,\bar\chi^3}\)</td>
+                  </tr>
+                  <tr>
+                    <td>Our lower bound for the critic</td>
+                    <td>\({|\mathcal S|\,t_{\mathrm{mix}}^3+|\mathcal S||\mathcal A|\,t_{\mathrm{mix}}^2}\)</td>
+                    <td>\({d\,t_{\mathrm{mix}}^3}\)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <figcaption>
+              \(|\mathcal S|\) states, \(|\mathcal A|\) actions. Logarithmic factors omitted.
+              Prior bounds hold in expectation for a random iterate; ours hold with high probability for the last iterate.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section aria-labelledby="citation">
+          <h2 id="citation" class="paper-section-title">Citation</h2>
+          <div class="citation-block">
+            <div class="citation-toolbar">
+              <span>BibTeX</span>
+              <div class="citation-actions">
+                <button class="citation-action citation-copy" type="button" data-copy-target="paper-bibtex" aria-label="Copy BibTeX citation" title="Copy BibTeX" hidden>
+                  <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                  <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg>
+                </button>
+                <a class="citation-action" href="citation.bib" download aria-label="Download BibTeX citation" title="Download BibTeX">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></svg>
+                </a>
+              </div>
+            </div>
+            <pre id="paper-bibtex" tabindex="0" aria-label="BibTeX citation"><code>@inproceedings{arda2026sharp,
+  title     = {Sharp Convergence and Sample Complexity of Policy Mirror Descent for Average-Reward {MDPs}},
+  author    = {Arda, Enes and Eryilmaz, Atilla},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2026}
+}</code></pre>
+            <p class="citation-status" role="status" aria-live="polite"></p>
+          </div>
+        </section>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
