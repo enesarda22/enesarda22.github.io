@@ -219,6 +219,10 @@ h2 {
   list-style: disc;
 }
 
+.sidebar-posts li + li {
+  margin-top: 6px;
+}
+
 /* ---------- News ---------- */
 .news,
 .pubs {
