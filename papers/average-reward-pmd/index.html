@@ -298,9 +298,14 @@
           <p>
             The terms of this sum vanish only once the costs \(c_k\) are sampled
             from the stationary distribution of \(\pi^t\).
-            So how fast a rollout of \(\pi^t\) gets close to stationarity tells us when to stop sampling,
-            and this is where the mixing time \(t_{\mathrm{mix}}\) comes in.
-            Both critics below use it to decide how to spend their samples, and both do so <em>optimally</em>:
+            So how fast a rollout of \(\pi^t\) gets close to stationarity tells us when to stop sampling.
+            This is precisely what the mixing time \(t_{\mathrm{mix}}\) measures:
+            every \(t_{\mathrm{mix}}\) steps, a rollout gets at least twice as close to stationarity.
+            Discounting gets its stopping point for free from the effective horizon \(H_\gamma\),
+            while average reward has to wait for the rollout to mix.
+          </p>
+          <p>
+            Our two critics put mixing to good use, and both are <em>optimal</em>:
             each matches a lower bound that we prove, up to logarithmic factors.
           </p>
           <p>
