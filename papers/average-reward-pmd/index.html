@@ -354,7 +354,7 @@
             \]
           </div>
           <p>
-            Here, the key idea is to average the noise out over single labels \(\hat Q^t(s_k,a_k)\),
+            Here, the key idea is to average the noise out over pointwise estimates \(\hat Q^t(s_k,a_k)\),
             which are cheap: each costs one rollout, again of length \(t_{\mathrm{mix}}\).
             A sublinear actor averages over whole critic estimates instead, one per iteration,
             each of order \(t_{\mathrm{mix}}^3\) samples.
