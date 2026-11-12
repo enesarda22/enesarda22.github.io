@@ -100,7 +100,7 @@
 
       <div class="paper-body">
         <section aria-label="Discounted and average-reward objectives">
-          <p>The most familiar objective in reinforcement learning (RL) is the discounted cost</p>
+          <p>The most familiar objective in reinforcement learning is the discounted cost</p>
           <div class="paper-equation">
             \[\rho_\gamma=\lim_{H\to\infty}\sum_{k=0}^{H-1}\gamma^k\,c_k, \tag{1}\]
           </div>
@@ -261,8 +261,8 @@
           <ul class="paper-findings">
             <li>
               <strong>Superlinear.</strong> When \(\pi^t\) converges (e.g., if the optimal policy is unique),
-              \({\chi=1}\) and \({\limsup_t\Delta_t^{1/t}=0}\).
-              With KL or the squared Euclidean distance as \(D\), this assumption is not needed.
+              \({\chi=1}\), so \({\limsup_t\Delta_t^{1/t}=0}\).
+              With KL or the squared Euclidean distance as \(D\), even this is not needed: they are always superlinear!
             </li>
             <li>
               <strong>Tight.</strong> For every \(\bar\chi\) and every \(T\), some MDP has
