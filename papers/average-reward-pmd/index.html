@@ -122,7 +122,7 @@
           <p>
             Policy mirror descent (PMD) is no exception: it has a mature finite-time theory
             for the discounted cost, but less is known for the average-reward objective.
-            Our paper develops a finite-time, finite-sample theory of PMD for this objective.
+            Our paper develops a sharp finite-time, finite-sample theory of PMD for this objective.
           </p>
           <p>
             The theory for (1) uses its weights \(\gamma^k\) in two ways
@@ -130,9 +130,11 @@
           </p>
           <ul class="paper-findings">
             <li>
-              <strong>Initial conditions.</strong> More weight on early costs means that the initial state distribution matters,
-              and the theory uses it to lower bound state visitation uniformly.
-              With equal weights, (2) forgets the initial distribution: only the stationary behavior of the policy matters.
+              <strong>Initial conditions.</strong> With more weight on early costs,
+              the discounted cost depends heavily on how the process starts.
+              The theory exploits this dependence: an initial distribution with full support
+              lower bounds the visitation of every state.
+              With equal weights, (2) forgets the initial distribution, so only the stationary behavior of the policy matters.
             </li>
             <li>
               <strong>Effective horizon.</strong> The weights \(\gamma^k\) yield a finite effective horizon
