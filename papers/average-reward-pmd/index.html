@@ -162,18 +162,17 @@
           <p>
             The critic \(\tilde Q^t\) is an estimate of the differential action-value function \(Q^{\pi^t}\),
             which measures how costly each action is under the current policy.
-            We study three critics:
+            We study two critics:
           </p>
           <ul class="paper-findings">
             <li>
-              <strong>Exact.</strong> \({\tilde Q^t(s,a)=Q^{\pi^t}(s,a)}\) for every state \(s\) and action \(a\), with no error.
-            </li>
-            <li>
-              <strong>Tabular.</strong> \({\tilde Q^t(s,a)=\hat Q^t(s,a)}\), a separate estimate of each \(Q^{\pi^t}(s,a)\).
+              <strong>Tabular.</strong> \({\tilde Q^t(s,a)=\hat Q^t(s,a)}\), a separate estimate of \(Q^{\pi^t}(s,a)\)
+              for every state \(s\) and action \(a\).
             </li>
             <li>
               <strong>Linear function approximation (LFA).</strong> \({\tilde Q^t(s,a)=\phi_{s,a}^\top w_t}\),
-              a linear function of given features \(\phi_{s,a}\).
+              a linear function of given features \(\phi_{s,a}\),
+              so the critic boils down to a single vector \({w_t\in\mathbb{R}^d}\).
             </li>
           </ul>
           <p>For the PMD update (3) and these critics, we ask:</p>
@@ -255,7 +254,8 @@
         <section aria-labelledby="exact-critic">
           <h2 id="exact-critic" class="paper-section-title">Exact critic</h2>
           <p>
-            With the exact critic, \({\bar A=\bar B=0}\): the error floor is zero, \({\Delta_t\to0}\),
+            With an exact critic, \({\tilde Q^t=Q^{\pi^t}}\), there is no error and \({\bar A=\bar B=0}\):
+            the error floor is zero, \({\Delta_t\to0}\),
             and the asymptotic rate is \({1-1/\chi}\). Two more results hold in this case:
           </p>
           <ul class="paper-findings">
