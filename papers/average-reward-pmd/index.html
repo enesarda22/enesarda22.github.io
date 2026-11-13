@@ -118,14 +118,15 @@
           </div>
         </section>
 
-        <section aria-label="Policy mirror descent and what the discounted theory relies on">
+        <section aria-label="Policy mirror descent, the question, and what the discounted theory relies on">
           <p>
             Policy mirror descent (PMD) is no exception: it has a mature finite-time theory
             for the discounted cost, but less is known for the average-reward objective.
-            Our paper develops a sharp theory of PMD for this objective.
+            Our paper develops a sharp theory of PMD for this objective, around one question:
           </p>
+          <h2 id="question" class="paper-question">How fast, and with how few samples,<br />can policy mirror descent provably minimize the average-reward objective?</h2>
           <p>
-            The theory for (1) uses its weights \(\gamma^k\) in two ways
+            The discounted theory does not carry over: it uses its weights \(\gamma^k\) in two ways
             that the equal weights in (2) do not allow:
           </p>
           <ul class="paper-findings">
@@ -144,7 +145,8 @@
           </ul>
         </section>
 
-        <section aria-labelledby="question">
+        <section aria-labelledby="pmd">
+          <h2 id="pmd" class="paper-section-title">Policy mirror descent</h2>
           <p>
             To minimize the average-reward objective \(\rho\), PMD updates the current policy \(\pi^t\)
             at every state \(s\). The update uses a step size \(\eta_t\), a critic \(\tilde Q^t\)
@@ -175,10 +177,8 @@
               so the critic boils down to a single vector \({w_t\in\mathbb{R}^d}\).
             </li>
           </ul>
-          <p>For the PMD update (3) with these critics, we ask:</p>
-          <h2 id="question" class="paper-question">How fast, and with how few samples,<br />can policy mirror descent provably minimize the average-reward objective?</h2>
           <p>
-            We measure “how fast” by the decay of the gap
+            For the PMD update (3) with these critics, we measure “how fast” by the decay of the gap
             \({\Delta_t:=\rho(\pi^t)-\rho^*}\) between the average cost of the current policy \(\pi^t\)
             and its minimum \(\rho^*\) over all policies.
             A single master recursion bounds this gap at every iteration, for any critic:
