@@ -349,7 +349,7 @@
             \begin{aligned}
             w_{t,k}&=w_{t,k-1}-\alpha\bigl(\phi_{s_k,a_k}^\top w_{t,k-1}
             -\critclap{\hat Q^t(s_k,a_k)}{noisy label from}{one rollout}\bigr)\,\phi_{s_k,a_k},\\[4pt]
-            w_t&=\critterm{\frac{1}{\lceil K/2\rceil}\sum_{k>K/2}w_{t,k}\rlap{.}}{averaging}{inside the critic}
+            w_t&=\critterm{\frac{1}{\lceil K/2\rceil}\sum_{k>K/2}w_{t,k}\rlap{.}}{averaging over}{SGD steps}
             \end{aligned}
             \]
           </div>
