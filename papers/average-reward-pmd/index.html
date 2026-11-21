@@ -151,18 +151,18 @@
         <section aria-labelledby="pmd">
           <h2 id="pmd" class="paper-section-title">Policy mirror descent</h2>
           <p>
-            To minimize the average-reward objective \(\rho\), PMD updates the current policy \(\pi^t\)
-            at every state \(s\). The update uses a step size \(\eta_t\), a critic \(\tilde Q^t\)
-            and a Bregman divergence \(D\):
+            PMD is an iterative method: it repeatedly updates the current policy \(\pi^t\),
+            at every state \(s\), by solving a small optimization problem:
           </p>
           <div class="paper-equation">
             \[\pi^{t+1}_s\in\operatorname*{arg\,min}_{p\in\mathcal{P}(\mathcal{A})}
             \bigl\{\eta_t\,\langle\tilde Q^t_s,\,p\rangle+D(p,\pi^t_s)\bigr\}. \tag{3}\]
           </div>
           <p>
+            Here \(\tilde Q^t\) is a critic, \(D\) is a Bregman divergence and \(\eta_t\) is a step size.
             The first term favors the actions that the critic estimates to be cheap,
             the second keeps the new policy \(\pi^{t+1}_s\) close to the current one,
-            and the step size \(\eta_t\) sets the balance between the two.
+            and the step size sets the balance between the two.
           </p>
           <p>
             The critic \(\tilde Q^t\) is an estimate of the differential action-value function \(Q^{\pi^t}\),
