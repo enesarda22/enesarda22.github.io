@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fundamental Limits of Text Summarization</title>
+  <meta name="description" content="How short a summary can be at a given fidelity and naturalness, through rate–distortion–perception theory. An overview of our IEEE Transactions on Communications paper and the ISIT 2025 and Allerton 2025 papers before it." />
+  <meta name="author" content="Enes Arda, Aylin Yener" />
+  <link rel="canonical" href="https://enesarda.com/papers/summarization/" />
+
+  <meta name="citation_title" content="Fundamental Limits for Text Summarization: A Rate-Distortion-Perception Approach" />
+  <meta name="citation_author" content="Enes Arda" />
+  <meta name="citation_author" content="Aylin Yener" />
+  <meta name="citation_publication_date" content="2026" />
+  <meta name="citation_journal_title" content="IEEE Transactions on Communications" />
+  <meta name="citation_pdf_url" content="https://enesarda.com/papers/summarization/paper.pdf" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Fundamental Limits of Text Summarization" />
+  <meta property="og:description" content="How short a summary can be at a given fidelity and naturalness, through rate–distortion–perception theory. An overview of our IEEE Transactions on Communications paper and the ISIT 2025 and Allerton 2025 papers before it." />
+  <meta property="og:url" content="https://enesarda.com/papers/summarization/" />
+  <meta property="og:image" content="https://enesarda.com/papers/summarization/news-frontier.png" />
+  <meta property="og:image:alt" content="Estimated rate–distortion curves on CNN/DailyMail, with the operating points of three summarizers." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fundamental Limits of Text Summarization" />
+  <meta name="twitter:description" content="How short a summary can be at a given fidelity and naturalness, through rate–distortion–perception theory. An overview of our IEEE Transactions on Communications paper and the ISIT 2025 and Allerton 2025 papers before it." />
+  <meta name="twitter:image" content="https://enesarda.com/papers/summarization/news-frontier.png" />
+  <meta name="twitter:image:alt" content="Estimated rate–distortion curves on CNN/DailyMail, with the operating points of three summarizers." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Fundamental Limits of Text Summarization",
+    "name": "Fundamental Limits for Text Summarization: A Rate-Distortion-Perception Approach",
+    "datePublished": "2026-11-26",
+    "author": [
+      {"@type": "Person", "name": "Enes Arda", "url": "https://enesarda.com/"},
+      {"@type": "Person", "name": "Aylin Yener"}
+    ],
+    "url": "https://enesarda.com/papers/summarization/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://enesarda.com/papers/summarization/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "creativeWorkStatus": "Accepted",
+    "citation": [
+      "https://doi.org/10.1109/ISIT63088.2025.11195348",
+      "https://hdl.handle.net/2142/130289"
+    ],
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=29" />
+  <link rel="stylesheet" href="../../assets/css/paper.css?v=42" />
+  <script defer src="../../assets/js/math-config.js?v=5"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-svg-nofont.js"></script>
+  <script defer src="../../assets/js/math-copy.js"></script>
+  <script defer src="../../assets/js/citation-copy.js?v=3"></script>
+</head>
+<body class="paper-site">
+  <main class="paper-page">
+    <article class="paper-article" aria-labelledby="paper-title">
+      <nav class="paper-nav" aria-label="Back to homepage">
+        <a class="paper-back" href="../../">← Enes Arda</a>
+      </nav>
+
+      <header class="paper-header">
+        <p class="paper-venue">IEEE TCOM 2026 · ISIT 2025 · Allerton 2025</p>
+        <h1 id="paper-title">Fundamental Limits of Text Summarization</h1>
+        <p class="paper-authors">Enes Arda, Aylin Yener</p>
+        <ul class="paper-resources" aria-label="Paper resources">
+          <li><a href="paper.pdf">Paper PDF</a></li>
+          <li><a href="https://arxiv.org/abs/2501.13100">ISIT paper</a></li>
+          <li><a href="https://hdl.handle.net/2142/130289">Allerton paper</a></li>
+          <li><a href="#citation">BibTeX</a></li>
+        </ul>
+        <p class="paper-publication">Posted <time datetime="2026-11-26">November 26, 2026</time></p>
+      </header>
+
+      <div class="paper-body">
+        <section aria-label="Summarization as lossy compression">
+          <p>
+            Summarization is lossy compression in which the compressed text is the end product.
+            In classical lossy compression, the compressed representation is only a string of bits:
+            a decoder turns it back into a reconstruction of the source.
+            Shannon’s rate–distortion theory characterizes the limits of this classical setting,
+            but summarization falls outside it.
+            Can the limits of summarization be formalized with the same tools?
+          </p>
+          <p>
+            Shannon’s theory rests on two quantities: the rate (bits per source symbol) and the distortion
+            (the expected dissimilarity between the source and its reconstruction).
+            The rate–distortion function \(R(D)\) is the lowest rate achievable within distortion \(D\).
+            Minimizing distortion alone, however, can favor reconstructions that look unnatural:
+          </p>
+          <!-- Photos: Bernard Spragg and Jebulon, CC0, Wikimedia Commons. -->
+          <figure class="paper-figure paper-experiment">
+            <img src="parrot.png" width="1320" height="560"
+                 alt="Two compression pipelines start from the same macaw photo and pass through an encoder, the bits 0110… and a decoder. The top reconstruction is a heavy blur of the input, labeled low distortion, unnatural. The bottom reconstruction is a sharp photo of a different macaw, labeled high distortion, natural." />
+          </figure>
+          <p>
+            At low rates, many images are consistent with the bits, and the reconstruction with the lowest squared error
+            is their average: a blur that looks like no real image.
+            Sampling one of them instead gives a natural image, possibly of a different parrot, at exactly twice the squared error.
+            Blau and Michaeli capture naturalness with a third quantity, perception,
+            measured by a divergence \(\phi(p_X,p_{\hat X})\) between the distributions of the source \(X\) and its reconstruction \(\hat X\).
+            Shannon showed that \(R(D)\) is a minimum of mutual information,
+            and the rate–distortion–perception function adds perception as a second constraint:
+          </p>
+          <div class="paper-equation">
+            \[
+            \begin{aligned}
+            R(D,P)=\min_{p_{\hat X|X}}\quad &amp; I(X;\hat X)\\
+            \text{s.t.}\quad &amp; \mathbb{E}[d(X,\hat X)]\le D,\\
+            &amp; \phi(p_X,p_{\hat X})\le P.
+            \end{aligned}
+            \tag{1}
+            \]
+          </div>
+          <p>With \({P=\infty}\), it reduces to Shannon’s \(R(D)\).</p>
+        </section>
+
+        <section aria-label="Rate, distortion and perception for summaries">
+          <p>In summarization, a text \(T\) is compressed into a summary \(S\), and all three quantities carry over:</p>
+          <ul class="paper-findings">
+            <li>
+              <strong>Rate.</strong> The summary is the compressed representation, so the rate is its length as a fraction of the text’s,
+              \(\ell(S)/\ell(T)\).
+            </li>
+            <li>
+              <strong>Distortion.</strong> The summary is also the reconstruction, so \(d(T,S)\) compares it directly with the text,
+              penalizing missed key points, hallucinated facts or a shifted sentiment.
+            </li>
+            <li>
+              <strong>Perception.</strong> Natural now means reading like a good summary, so \(\phi(p_{\psi(S')},p_{\psi(S)})\)
+              compares the distribution of summaries with that of good reference summaries \(S'\), such as human-written ones.
+              Both are seen through a representation \(\psi\), from the text itself (\({\psi=\mathrm{id}}\)) to a semantic embedding.
+              With \({\psi=\mathrm{id}}\), using the source as the reference would encourage unwanted features of the original text,
+              such as its length and verbosity.
+            </li>
+          </ul>
+          <p>As with images, the three quantities pull against each other:</p>
+          <figure class="paper-figure paper-experiment">
+            <img src="reviews-tradeoff.png" width="1400" height="838" loading="lazy"
+                 alt="Four short phone reviews and three summaries. Summarizer 1 writes a long, fluent summary with the same sentiment. Summarizer 2 writes very concise fragments with the same sentiment but bad readability. Summarizer 3 writes one very concise, fluent sentence that over-generalizes, with only a similar sentiment." />
+            <figcaption>Four phone reviews and three ways to summarize them.</figcaption>
+          </figure>
+          <p>The third summary averages the four reviews into one vague sentence, the text counterpart of the blurry parrot.</p>
+          <p>
+            One more difference separates summaries from codewords.
+            Any string of bits is a valid codeword, but most strings of words are not meaningful summaries.
+            If \(\mathcal S_m\) denotes the meaningful summaries of length \(m\), the effective alphabet size
+            \({|\mathcal A_{\mathrm{eff}}|=\sup_m|\mathcal S_m|^{1/m}}\) measures how fast their number grows with \(m\),
+            and we count information in its symbols so that it can be compared with length.
+          </p>
+        </section>
+
+        <section aria-labelledby="question">
+          <p>The opening question now takes a precise form:</p>
+          <h2 id="question" class="paper-question">How short can a summary be within given distortion and perception budgets?</h2>
+          <p>
+            Mirroring \(R(D,P)\), we define the summarizer rate–distortion–perception function (SRDPF):
+          </p>
+          <div class="paper-equation">
+            \[
+            \begin{aligned}
+            R_S(D,P)=\inf_{p_{S|T}}\quad &amp; \frac{1}{\bar L}\,I\bigl(T;S\mid \ell(T)\bigr)\\
+            \text{s.t.}\quad &amp; \mathbb{E}[d(T,S)]\le D,\\
+            &amp; \phi(p_{\psi(S')},p_{\psi(S)})\le P.
+            \end{aligned}
+            \tag{2}
+            \]
+          </div>
+          <p>
+            Two changes separate the SRDPF from (1).
+            The text’s length, which has no counterpart in classical rate–distortion theory, appears twice:
+            dividing by its average \({\bar L=\mathbb{E}[\ell(T)]}\) mirrors the rate,
+            and conditioning on \(\ell(T)\) counts only what the summary reveals about the content.
+            And the source has left the perception constraint: naturalness is now measured against good summaries \(S'\),
+            seen through \(\psi\).
+          </p>
+          <p>The SRDPF also has the properties we expect of a trade-off between length, fidelity and naturalness:</p>
+          <ul class="paper-findings">
+            <li>
+              <strong>Diminishing returns.</strong> \(R_S\) is convex in \((D,P)\):
+              each extra word buys less fidelity and naturalness than the last.
+            </li>
+            <li>
+              <strong>Naturalness costs length.</strong> At some distortion levels, demanding perfectly natural summaries (\({P=0}\))
+              strictly raises the curve: \({R_S(D,0)>R_S(D,\infty)}\).
+            </li>
+          </ul>
+          <p>
+            Our main result shows that no summarizer can beat it:
+          </p>
+        </section>
+
+        <section class="paper-theorem" aria-labelledby="main-result">
+          <h2 id="main-result" class="paper-theorem-title">Theorem 1 (informal)</h2>
+          <p>
+            Under our assumptions, let texts be i.i.d. and summary lengths be set by text lengths.
+            Even for summarizers that process many texts jointly, the lowest rate achievable within budgets \(D\) and \(P\) satisfies
+          </p>
+          <div class="paper-equation">
+            \[R_S^{\mathrm{op}}(D,P)\;\ge\;R_S(D,P).\]
+          </div>
+        </section>
+
+        <section aria-labelledby="where-the-length-goes">
+          <h2 id="where-the-length-goes" class="paper-section-title">Where the length goes</h2>
+          <p>
+            Theorem 1 bounds the rate from below. In effective-alphabet symbols, writing \({L=\ell(T)}\) and \({M=\ell(S)}\),
+            the rate of any one-shot summarizer of this kind splits exactly into the information it carries and a slack \(\sigma\):
+          </p>
+          <div class="paper-equation">
+            \[\frac{\mathbb{E}[M]}{\bar L}=\frac{I(T;S\mid L)}{\bar L}+\sigma,\]
+            \[
+            \bar L\,\sigma=\underbrace{\mathbb{E}\bigl[M-\log|\mathcal S_M|\bigr]}_{\text{alphabet gap}}
+            +\underbrace{\mathbb{E}\bigl[D_{\mathrm{KL}}\bigl(p_{S\mid M,L}\,\big\|\,\mathrm{Unif}(\mathcal S_M)\bigr)\bigr]}_{\text{uneven use}}
+            +\underbrace{H(S\mid T,M,L)}_{\text{content randomness}}.
+            \]
+          </div>
+          <p>All three terms are nonnegative, and each is a different kind of overhead:</p>
+          <ul class="paper-findings">
+            <li>
+              <strong>Alphabet gap.</strong> At some lengths, the language has fewer meaningful summaries than
+              \(|\mathcal A_{\mathrm{eff}}|^m\). This depends on the language alone.
+            </li>
+            <li>
+              <strong>Uneven use.</strong> The summarizer favors some summaries of a given length over others,
+              whereas an efficient code uses its codewords evenly.
+            </li>
+            <li>
+              <strong>Content randomness.</strong> The summary varies in ways the text does not explain.
+              Deterministic decoders, such as greedy or beam search, have none.
+            </li>
+          </ul>
+          <p>
+            A classical code drives all three to zero: any bit string is a valid codeword, codewords are used evenly,
+            and encoders are deterministic.
+            Summaries have no such freedom: they must be meaningful text, and the rate counts every word.
+            The slack is the price of the compressed text being the end product.
+          </p>
+          <p>
+            Together with Theorem 1, the identity makes the SRDPF the exact limit whenever summarizers can approach it
+            with vanishing slack.
+          </p>
+        </section>
+
+        <section aria-labelledby="computing">
+          <h2 id="computing" class="paper-section-title">Computing the SRDPF</h2>
+          <p>
+            For small discrete sources, the SRDPF can be computed exactly.
+            Real text rules this out: with a vocabulary of about 100,000 tokens, even 10-token strings have about \(10^{50}\)
+            possibilities, far more than any dataset can cover.
+          </p>
+          <p>
+            Instead, we map texts to semantic embeddings \(\psi(T)\in\mathbb R^k\).
+            This can only lose information, so the embedding-level SRDPF remains a lower bound.
+            Embeddings also largely ignore length and verbosity, so the source itself can serve as the reference.
+            Under a Gaussian model in each length bin, with squared distance as distortion and KL divergence as perception,
+            the SRDPF reduces to a convex program that needs only each bin’s covariance eigenvalues.
+          </p>
+        </section>
+
+        <section aria-labelledby="what-the-curve-is-good-for">
+          <h2 id="what-the-curve-is-good-for" class="paper-section-title">What the curve is good for</h2>
+          <p>
+            On CNN/DailyMail, we estimate the curves from BGE-M3 embeddings and run
+            Mistral-7B, BART and PEGASUS at several lengths:
+          </p>
+          <figure class="paper-figure paper-experiment" style="--figure-width: 460px">
+            <img src="news-frontier.png" width="1716" height="1475" loading="lazy"
+                 alt="Estimated rate versus distortion on CNN/DailyMail. A black curve has no perception constraint and a red dashed curve has one; the operating points of Mistral, BART and PEGASUS lie to their right. An arrow marks the distortion gap at a fixed rate, and a star marks the elbow near rate 0.08." />
+            <!-- TODO: relabel the legend (facebook-cnn → BART, google-cnn → PEGASUS) and drop the second caption sentence. -->
+            <figcaption>
+              Estimated curves without perception (black) and with the perception budget set to Mistral’s level (red).
+              In the legend, facebook-cnn is BART and google-cnn is PEGASUS.
+            </figcaption>
+          </figure>
+          <p>
+            Consistent with Theorem 1, both curves lie below all three summarizers.
+            Diminishing returns give the curve with perception an elbow near rate 0.08,
+            close to the 0.09 rate of the human-written reference summaries.
+            With perfect perception (\({P=0}\)), the curve rises above most of their operating points.
+            Since none of them reaches \({P=0}\), this is no contradiction, and it shows the bound is not trivially low.
+          </p>
+          <p>
+            Because most automatic metrics reward length, summarizers are usually compared at a fixed length.
+            The curve compares them at any length: a summarizer’s distortion gap, its horizontal distance to the curve,
+            measures its efficiency at its own length:
+          </p>
+          <figure class="paper-figure paper-experiment" style="--figure-width: 560px">
+            <img src="length-aware.png" width="1836" height="1176" loading="lazy"
+                 alt="Distortion gap versus rate for Mistral, BART, PEGASUS and a length-aware BART. BART and PEGASUS have their smallest gaps near rate 0.1 and larger gaps elsewhere; the length-aware BART stays below the original BART away from that rate." />
+            <!-- TODO: relabel the legend (facebook-cnn → BART, google-cnn → PEGASUS, facebook-len-aware → BART, length-aware) and drop the second caption sentence. -->
+            <figcaption>
+              Distortion gap across lengths.
+              In the legend, facebook-len-aware is the length-aware BART.
+            </figcaption>
+          </figure>
+          <p>
+            BART and PEGASUS, fine-tuned on this dataset, are closest to the curve around the rate of its reference summaries,
+            which is exactly the length at which summarizers are usually compared.
+            At other lengths their gaps grow, a weakness that a comparison at that length cannot see.
+            Fine-tuning BART on Mistral’s summaries at five lengths, with a token marking the target length, shrinks those gaps.
+          </p>
+        </section>
+
+        <section aria-labelledby="citation">
+          <h2 id="citation" class="paper-section-title">Citation</h2>
+          <div class="citation-block">
+            <div class="citation-toolbar">
+              <span>BibTeX</span>
+              <div class="citation-actions">
+                <button class="citation-action citation-copy" type="button" data-copy-target="paper-bibtex" aria-label="Copy BibTeX citation" title="Copy BibTeX" hidden>
+                  <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                  <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg>
+                </button>
+                <a class="citation-action" href="citation.bib" download aria-label="Download BibTeX citation" title="Download BibTeX">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></svg>
+                </a>
+              </div>
+            </div>
+            <pre id="paper-bibtex" tabindex="0" aria-label="BibTeX citation"><code>@article{arda2026fundamental,
+  title   = {Fundamental Limits for Text Summarization: A Rate--Distortion--Perception Approach},
+  author  = {Arda, Enes and Yener, Aylin},
+  journal = {IEEE Transactions on Communications},
+  year    = {2026},
+  note    = {To appear}
+}</code></pre>
+            <p class="citation-status" role="status" aria-live="polite"></p>
+          </div>
+        </section>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
