@@ -274,15 +274,13 @@
           <h2 id="what-the-curve-is-good-for" class="paper-section-title">What the curve is good for</h2>
           <p>
             On CNN/DailyMail, we estimate the curves from BGE-M3 embeddings and run
-            Mistral-7B, BART and PEGASUS at several lengths:
+            Mistral-7B, BART (facebook) and PEGASUS (google) at several lengths:
           </p>
-          <figure class="paper-figure paper-experiment" style="--figure-width: 460px">
+          <figure class="paper-figure paper-experiment" style="--figure-width: 380px">
             <img src="news-frontier.png" width="1716" height="1475" loading="lazy"
                  alt="Estimated rate versus distortion on CNN/DailyMail. A black curve has no perception constraint and a red dashed curve has one; the operating points of Mistral, BART and PEGASUS lie to their right. An arrow marks the distortion gap at a fixed rate, and a star marks the elbow near rate 0.08." />
-            <!-- TODO: relabel the legend (facebook-cnn → BART, google-cnn → PEGASUS) and drop the second caption sentence. -->
             <figcaption>
               Estimated curves without perception (black) and with the perception budget set to Mistral’s level (red).
-              In the legend, facebook-cnn is BART and google-cnn is PEGASUS.
             </figcaption>
           </figure>
           <p>
@@ -297,13 +295,11 @@
             The curve compares them at any length: a summarizer’s distortion gap, its horizontal distance to the curve,
             measures its efficiency at its own length:
           </p>
-          <figure class="paper-figure paper-experiment" style="--figure-width: 560px">
+          <figure class="paper-figure paper-experiment" style="--figure-width: 460px">
             <img src="length-aware.png" width="1836" height="1176" loading="lazy"
                  alt="Distortion gap versus rate for Mistral, BART, PEGASUS and a length-aware BART. BART and PEGASUS have their smallest gaps near rate 0.1 and larger gaps elsewhere; the length-aware BART stays below the original BART away from that rate." />
-            <!-- TODO: relabel the legend (facebook-cnn → BART, google-cnn → PEGASUS, facebook-len-aware → BART, length-aware) and drop the second caption sentence. -->
             <figcaption>
               Distortion gap across lengths.
-              In the legend, facebook-len-aware is the length-aware BART.
             </figcaption>
           </figure>
           <p>
