@@ -15,9 +15,26 @@ body.paper-site {
   margin: 32px auto 64px;
 }
 
+.paper-nav,
+.paper-post-nav {
+  padding-inline: var(--paper-inset);
+}
+
 .paper-nav {
   margin-bottom: 20px;
-  padding-inline: var(--paper-inset);
+}
+
+.paper-post-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 16px;
+  padding-bottom: max(20px, var(--paper-inset));
+}
+
+.paper-next {
+  margin-inline-start: auto;
+  text-align: end;
 }
 
 .paper-article {
@@ -35,6 +52,7 @@ body.paper-site {
 }
 
 .paper-back,
+.paper-next,
 .paper-venue,
 .paper-resources {
   font-family: var(--font-ui);
